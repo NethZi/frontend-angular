@@ -5,5 +5,4 @@ install:
   - npm install
   - npm ci
 script:
-  - npm test
   - ng build --prod

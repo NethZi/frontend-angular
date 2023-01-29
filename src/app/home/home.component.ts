@@ -5,16 +5,18 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { RestApiService } from '../rest-api.service';
 
-//component specific details 
+//component specific details
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 
-//Exporting the HomeComponent 
+//Exporting the HomeComponent
 export class HomeComponent implements OnInit {
   products: any;
+  categoryId: any;
+  isCategory = false;
 
   constructor(private data: DataService, private rest: RestApiService) {}
 
@@ -26,6 +28,15 @@ export class HomeComponent implements OnInit {
         : this.data.error('Could not fetch products.');
     } catch (error) {
       this.data.error(error['message']);
+    }
+  }
+
+  onCategory(id){
+    this.categoryId = id;
+    console.log(this.categoryId);
+    this.isCategory = true;
+    if(id == 3){
+      this.isCategory = false;
     }
   }
 }

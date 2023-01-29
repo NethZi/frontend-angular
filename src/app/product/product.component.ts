@@ -14,7 +14,7 @@ import { RestApiService } from '../rest-api.service';
   styleUrls: ['./product.component.scss'],
 })
 
-//exporting Product component for reuse 
+//exporting Product component for reuse
 export class ProductComponent implements OnInit {
   myReview = {
     title: '',
@@ -49,6 +49,14 @@ export class ProductComponent implements OnInit {
     this.data.addToCart(this.product)
       ? this.data.success('Product successfully added to cart.')
       : this.data.error('Product has already been added to cart.');
+  }
+
+  changeProduct(size){
+    this.product.size = size;
+  }
+
+  changeProductColor(color){
+    this.product.color = color;
   }
 
   async postReview() {

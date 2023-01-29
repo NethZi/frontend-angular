@@ -1,6 +1,3 @@
-//post-products component.ts - Type Script file that contains code to render posted products to elearning application
-
-//including the required files and services
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -14,7 +11,6 @@ import { DataService } from '../data.service';
   styleUrls: ['./post-product.component.scss']
 })
 
-//exporting PostProduct component for reuse 
 export class PostProductComponent implements OnInit {
 
   product = {
@@ -22,7 +18,7 @@ export class PostProductComponent implements OnInit {
     price: 0,
     categoryId: '',
     description: '',
-    product_picture: null
+    file: null
   };
 
   categories: any;
@@ -52,7 +48,7 @@ export class PostProductComponent implements OnInit {
       if (product.price) {
         if (product.categoryId) {
           if (product.description) {
-            if (product.product_picture) {
+            if (product.file) {
               return true;
             } else {
               this.data.error('Please select product image.');
@@ -72,7 +68,7 @@ export class PostProductComponent implements OnInit {
   }
 
   fileChange(event: any) {
-    this.product.product_picture = event.target.files[0];
+    this.product.file = event.target.files[0];
   }
 
   async post() {
@@ -85,8 +81,8 @@ export class PostProductComponent implements OnInit {
             if (key === 'product_picture') {
               form.append(
                 'product_picture',
-                this.product.product_picture,
-                this.product.product_picture.name
+                this.product.file,
+                this.product.file.name
               );
             } else {
               form.append(key, this.product[key]);
@@ -94,7 +90,7 @@ export class PostProductComponent implements OnInit {
           }
         }
         const data = await this.rest.post(
-          'http://localhost:3030/api/seller/products',
+          'http://localhost:3030/api/product',
           form
         );
         data['success']

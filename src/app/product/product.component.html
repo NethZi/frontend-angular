@@ -9,17 +9,29 @@
     <div *ngIf="product">
       <div class="row">
         <div class="col-lg-4">
-          <img [src]="product.image" alt="productImage" class="image img-thumbnail">
+          <img src="{{ product.imageUrl }}" alt="productImage" class="image img-thumbnail">
         </div>
         <div class="col-lg-5">
           <div class="row">
             <div class="col-6">
               <h4>{{ product.title }}</h4>
-              <p class="m-0">
-                <small>by {{ product.owner.name }}</small>
+              <p class="m-0">Please select size:
+                <select class="custom-select" [(ngModel)]="product.size"  (change)="changeProduct(product.size)" >
+                  <option value="3.5">3.5</option>
+                  <option value="4">4</option>
+                  <option value="4.5">4.5</option>
+                  <option value="5">5</option>
+                  <option value="5.5">5.5</option>
+                  <option value="6">6</option>
+                </select>
               </p>
-              <p class="m-0">
-                <small class="text-muted">{{ product.category.name }}</small>
+              <p class="m-0">Please select colour:
+                <select class="custom-select" [(ngModel)]="product.color"  (change)="changeProductColor(product.color)" >
+                  <option value="Blue">Blue</option>
+                  <option value="Gold & Silver">Gold & Silver</option>
+                  <option value="Red">Red</option>
+                  <option value="Green">Green</option>
+                </select>
               </p>
             </div>
             <div class="col-6">
@@ -32,7 +44,7 @@
         <div class="col-lg-3">
           <div class="card bg-light">
             <div class="card-body">
-              <h5 class="card-title">Price: {{ product.price | currency }}</h5>
+              <h5 class="card-title">Price: LKR {{ product.price }}</h5>
               <br>
               <br>
               <a class="btn btn-warning btn-block" (click)="addToCart()">Add to Cart</a>

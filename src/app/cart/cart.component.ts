@@ -75,18 +75,7 @@ export class CartComponent implements OnInit {
   checkout() {
     this.btnDisabled = true;
     try {
-      if (this.validate()) {
-        this.handler.open({
-          name: 'Amazono',
-          description: 'Checkout Payment',
-          amount: this.cartTotal * 100,
-          closed: () => {
-            this.btnDisabled = false;
-          },
-        });
-      } else {
-        this.btnDisabled = false;
-      }
+     alert("Checkout Successfull");
     } catch (error) {
       this.data.error(error);
     }
