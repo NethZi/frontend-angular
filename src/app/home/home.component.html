@@ -2,37 +2,37 @@
   <div *ngIf="isCategory == false" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000" >
     <ngb-carousel>
       <ng-template ngbSlide>
-        <img src="assets/img/image1.jpg" alt="first" class="item">
+        <img src="assets/img/image1.jpg" style="width:1200px;height:600px" alt="first" class="item">
       </ng-template>
       <ng-template ngbSlide>
-        <img src="assets/img/image2.jpg" alt="second" class="item">
+        <img src="assets/img/image2a.jpg" style="width:1200px;height:600px" alt="second" class="item">
       </ng-template>
       <ng-template ngbSlide>
-        <img src="assets/img/image3.jpg" alt="third" class="item">
+        <img src="assets/img/image3a.jpg" style="width:1200px;height:600px" alt="third" class="item">
       </ng-template>
       <ng-template ngbSlide>
-        <img src="assets/img/image4.jpg" alt="fourth" class="item">
+        <img src="assets/img/image4a.jpg" style="width:1200px;height:600px" alt="fourth" class="item">
       </ng-template>
       <ng-template ngbSlide>
-        <img src="assets/img/image5.jpg" alt="fifth" class="item">
+        <img src="assets/img/image5a.jpeg" style="width:1200px;height:600px" alt="fifth" class="item">
       </ng-template>
     </ngb-carousel>
   </div>
   <div class="container p-5">
     <app-message></app-message>
     <p class="lead">
-      <b *ngIf="isCategory == false">Categories: </b>
+      <h3 *ngIf="isCategory == false" style="text-align: center; font-family: Aachen BT; font-size: 40px; margin-bottom: 16px">Categories <br/><br></h3>
     <div *ngIf="isCategory == false" class="row">
       <div class="col-6 col-md-6">
         <div (click)="onCategory(2)" style="cursor: pointer">
-       <img src="assets/women.jpg" style="width: 620px; height: 580px;" alt="image" class="img-fluid img-thumbnail">
-        <h3 style="text-align: center;">Women</h3>
+       <img src="assets/women1.png" alt="image" class="img-fluid img-thumbnail">
+        <h3 style="text-align: center; font-family: Aachen BT; font-size: 30px"><br>Women</h3>
         </div>
       </div>
       <div class="col-6 col-md-6">
         <div (click)="onCategory(1)" style="cursor: pointer">
-        <img src="assets/men.jpg" style="width: 620px; height: 580px;" alt="image" class="img-fluid img-thumbnail">
-        <h3 style="text-align: center;">Men</h3>
+        <img src="assets/men1.png" alt="image" class="img-fluid img-thumbnail">
+        <h3 style="text-align: center; font-family: Aachen BT; font-size: 30px"><br>Men</h3>
         </div>
       </div>
     </div>
@@ -48,8 +48,8 @@
           <i class="fa fa-spinner fa-spin"></i>
         </h1>
       </div>
-      <div *ngFor="let product of products" class="col-md-3 mb-5">
-        <div *ngIf="product.categoryId == categoryId && isCategory == true">
+      <ng-container *ngFor="let product of products">
+      <div *ngIf="product.categoryId == categoryId && isCategory == true" class="col-md-3 mb-5">
         <a routerLink="/product/{{ product._id }}">
           <div class="card bg-light">
             <img src="{{ product.imageUrl }}" alt="product" class="card-img-top">
@@ -60,7 +60,7 @@
           </div>
         </a>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </section>

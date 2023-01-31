@@ -46,9 +46,18 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart() {
-    this.data.addToCart(this.product)
-      ? this.data.success('Product successfully added to cart.')
-      : this.data.error('Product has already been added to cart.');
+    if(!this.product.size){
+      this.data.error('Please select size');
+    }
+    else if(!this.product.color){
+      this.data.error('Please select colour');
+    }
+    else{
+      this.data.addToCart(this.product)
+          ? this.data.success('Product successfully added to cart.')
+          : this.data.error('Product has already been added to cart.');
+    }
+
   }
 
   changeProduct(size){

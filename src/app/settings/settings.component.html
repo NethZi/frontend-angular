@@ -10,19 +10,14 @@
     </div>
     <div *ngIf="currentSettings" class="card bg-light">
       <div class="card-body">
-        <form>
+        <form #form="ngForm">
           <div class="form-group">
             <label class="form-control-label">Name</label>
             <input type="text" name="name" class="form-control" [(ngModel)]="currentSettings.name">
           </div>
           <div class="form-group">
             <label class="form-control-label">Email</label>
-            <input type="email" name="email" class="form-control" [(ngModel)]="currentSettings.email">
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="checkbox" name="isSeller" class="form-check-input" [(ngModel)]="currentSettings.isSeller"> Is Seller
-            </label>
+            <input type="email"  name="email" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="currentSettings.email">
           </div>
           <div class="form-group">
             <label class="form-control-label">New Password</label>

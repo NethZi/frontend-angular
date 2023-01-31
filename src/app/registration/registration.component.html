@@ -24,11 +24,6 @@
                 <label class="form-control-label">Confirm Password</label>
                 <input type="password" name="password1" class="form-control" [(ngModel)]="password1">
               </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" name="isSeller" class="form-check-input" [(ngModel)]="isSeller"> Register as Seller
-                </label>
-              </div>
               <hr>
               <button type="button" class="btn btn-primary btn-block" (click)="register()" [disabled]="btnDisabled">Register</button>
             </form>

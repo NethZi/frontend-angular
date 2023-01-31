@@ -47,18 +47,22 @@ export class PostProductComponent implements OnInit {
   validate(product) {
     if (product.title) {
       if (product.price) {
-        if (product.categoryId) {
-          if (product.description) {
-            if (product.file) {
-              return true;
+        if (product.stock) {
+          if (product.categoryId) {
+            if (product.description) {
+              if (product.file) {
+                return true;
+              } else {
+                this.data.error('Please select product image.');
+              }
             } else {
-              this.data.error('Please select product image.');
+              this.data.error('Please enter description.');
             }
           } else {
-            this.data.error('Please enter description.');
+            this.data.error('Please select category.');
           }
         } else {
-          this.data.error('Please select category.');
+          this.data.error('Please enter a stock value.');
         }
       } else {
         this.data.error('Please enter a price.');
@@ -66,6 +70,7 @@ export class PostProductComponent implements OnInit {
     } else {
       this.data.error('Please enter a title.');
     }
+
   }
 
   fileChange(event: any) {

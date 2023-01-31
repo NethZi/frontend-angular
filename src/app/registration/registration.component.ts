@@ -59,24 +59,31 @@ export class RegistrationComponent implements OnInit {
   async register() {
     this.btnDisabled = true;
     try {
-      if (this.validate()) {
-        const data = await this.rest.post(
-          'http://localhost:3030/api/accounts/signup',
-          {
-            name: this.name,
-            email: this.email,
-            password: this.password,
-            isSeller: this.isSeller,
-          },
-        );
-        if (data['success']) {
-          localStorage.setItem('token', data['token']);
-          await this.data.getProfile();
-          this.data.success('Registration successful!');
-          await this.router.navigateByUrl('login');
+      let char = "@";
+      let result = this.email.includes(char);
+      if(result == false){
+        this.data.error('Email is not in correct format.');
+      }
+      if(result == true) {
+        if (this.validate()) {
+          const data = await this.rest.post(
+              'http://localhost:3030/api/accounts/signup',
+              {
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                isSeller: this.isSeller,
+              },
+          );
+          if (data['success']) {
+            localStorage.setItem('token', data['token']);
+            await this.data.getProfile();
+            this.data.success('Registration successful!');
+            await this.router.navigateByUrl('login');
 
-        } else {
-          this.data.error(data['message']);
+          } else {
+            this.data.error(data['message']);
+          }
         }
       }
     } catch (error) {

@@ -32,7 +32,6 @@ import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
 import { CartComponent } from './cart/cart.component';
-import { MyordersComponent } from './myorders/myorders.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { LiveChatComponent } from './live-chat/live-chat.component';
 import { TermsComponent } from './terms/terms.component';
@@ -57,7 +56,6 @@ import { AboutComponent } from './about/about.component';
     ProductComponent,
     SearchComponent,
     CartComponent,
-    MyordersComponent,
     OrderdetailsComponent,
     LiveChatComponent,
     TermsComponent,

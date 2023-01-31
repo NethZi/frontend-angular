@@ -39,10 +39,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label>Country</label>
-            <input type="text" name="country" class="form-control" [(ngModel)]="currentAddress.country">
-          </div>
+
           <button type="button" class="btn btn-danger" (click)="updateAddress()" [disabled]="btnDisabled">Change Address</button>
         </form>
       </div>
