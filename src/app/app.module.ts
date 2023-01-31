@@ -35,6 +35,8 @@ import { CartComponent } from './cart/cart.component';
 import { MyordersComponent } from './myorders/myorders.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { LiveChatComponent } from './live-chat/live-chat.component';
+import { TermsComponent } from './terms/terms.component';
+import { AboutComponent } from './about/about.component';
 
 
 //Module decorator specifying all the components used in the application
@@ -58,6 +60,8 @@ import { LiveChatComponent } from './live-chat/live-chat.component';
     MyordersComponent,
     OrderdetailsComponent,
     LiveChatComponent,
+    TermsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

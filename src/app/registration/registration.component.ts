@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss'],
 })
 
-//exporting Registration component for reuse 
+//exporting Registration component for reuse
 export class RegistrationComponent implements OnInit {
   name = '';
   email = '';
@@ -73,6 +73,8 @@ export class RegistrationComponent implements OnInit {
           localStorage.setItem('token', data['token']);
           await this.data.getProfile();
           this.data.success('Registration successful!');
+          await this.router.navigateByUrl('login');
+
         } else {
           this.data.error(data['message']);
         }

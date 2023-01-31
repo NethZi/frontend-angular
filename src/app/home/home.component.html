@@ -1,5 +1,5 @@
 <section id="home">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000" >
+  <div *ngIf="isCategory == false" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000" >
     <ngb-carousel>
       <ng-template ngbSlide>
         <img src="assets/img/image1.jpg" alt="first" class="item">
@@ -21,8 +21,8 @@
   <div class="container p-5">
     <app-message></app-message>
     <p class="lead">
-      <b>Categories: </b>
-    <div class="row">
+      <b *ngIf="isCategory == false">Categories: </b>
+    <div *ngIf="isCategory == false" class="row">
       <div class="col-6 col-md-6">
         <div (click)="onCategory(2)" style="cursor: pointer">
        <img src="assets/women.jpg" style="width: 620px; height: 580px;" alt="image" class="img-fluid img-thumbnail">

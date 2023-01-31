@@ -22,6 +22,8 @@ import { OrderdetailsComponent} from './orderdetails/orderdetails.component';
 
 import { AuthGuardService } from './auth-guard.service';
 import {LiveChatComponent} from './live-chat/live-chat.component';
+import {TermsComponent} from './terms/terms.component';
+import {AboutComponent} from './about/about.component';
 
 
 //assigning all possible routes to variable
@@ -57,6 +59,14 @@ const routes: Routes = [
   {
     path: 'chat',
     component: LiveChatComponent,
+  },
+  {
+    path: 'terms_conditions',
+    component: TermsComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
   },
   {
     path: 'register',

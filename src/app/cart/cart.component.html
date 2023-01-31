@@ -30,7 +30,10 @@
                 <a routerLink="/product/{{ item._id }}">{{ item.title }}</a>
               </h5>
               <p class="m-0">
-<!--                <small class="text-muted">{{ item.owner.name }}</small>-->
+                <small class="text-muted">InStock: {{ item.stock }}</small>
+              </p>
+              <p class="m-0">
+                  <small class="text-muted">Colour: {{ item.color }}</small>
               </p>
               <p class="m-0">
                 <small class="text-muted">Size: {{ item.size }}</small>

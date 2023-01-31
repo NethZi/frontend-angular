@@ -16,6 +16,7 @@ export class PostProductComponent implements OnInit {
   product = {
     title: '',
     price: 0,
+    stock: 0,
     categoryId: '',
     description: '',
     file: null
@@ -93,8 +94,8 @@ export class PostProductComponent implements OnInit {
           'http://localhost:3030/api/product',
           form
         );
-        data['success']
-          ? this.router.navigate(['/profile/myproducts'])
+        data['_id']
+          ? this.router.navigate(['/'])
             .then(() => this.data.success(data['message']))
             .catch(error => this.data.error(error))
           : this.data.error(data['message']);
