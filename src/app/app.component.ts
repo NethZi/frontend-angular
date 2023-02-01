@@ -24,7 +24,7 @@ export class AppComponent {
   }
 
   get token() {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   collapse() {
@@ -38,7 +38,7 @@ export class AppComponent {
   logout() {
     this.data.user = {};
     this.data.cartItems = 0;
-    localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['/login']);
   }
 

@@ -10,14 +10,15 @@
                 <div class="user-card"
                      [ngClass]="user?.phone === selectedUser?.phone && 'active'"
                      *ngFor="let user of userList"
-                     (click)="selectUserHandler(user?.phone)"
+                     (click)="selectUserHandler(user?.email)"
                 >
 
                     <img [src]="user?.image"
                          [alt]="user?.name"
                          class="avatar"
                     />
-                    <p class="username">{{user?.name}}</p>
+                    <p class="username"><span *ngIf="isLogged" class="logged-in">●</span>&nbsp;&nbsp;{{user?.name}}</p>
+
 
                 </div>
             </div>
@@ -33,7 +34,7 @@
                              [alt]="selectedUser?.name"
                              class="avatar"
                         />
-                        <p class="username">{{selectedUser?.name}}</p>
+                        <p class="username"> <span *ngIf="isLogged" class="logged-in">●</span>&nbsp;&nbsp;{{selectedUser?.name}}</p>
 
                     </div>
 
@@ -76,32 +77,4 @@
 
 </div>
 
-<ng-template #popup let-d="dismiss">
 
-    <div class="modal-header">
-        <h4 class="modal-title">Login</h4>
-    </div>
-
-    <div class="modal-body">
-
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="form-group">
-                    <input type="number"
-                           placeholder="Enter your phone number"
-                           class="form-control"
-                           [(ngModel)]="phone"
-                    />
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-    <div class="modal-footer">
-        <button class="btn btn-sm btn-primary" (click)="login(d)">Login</button>
-    </div>
-
-</ng-template>

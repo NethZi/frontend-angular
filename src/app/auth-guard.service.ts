@@ -3,7 +3,7 @@
 //Used to protect access to client side routes                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//importing required modules and services 
+//importing required modules and services
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
@@ -14,13 +14,13 @@ import {
 
 
 
-//exporting the auth-guard Service 
+//exporting the auth-guard Service
 @Injectable()
 export class AuthGuardService implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem('token')) {
+    if (sessionStorage.getItem('token')) {
       return state.url.startsWith('/profile')
         ? true
         : (this.router.navigate(['/']), false);

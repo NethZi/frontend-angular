@@ -9,3 +9,14 @@
   height: 15vw;
   object-fit: cover;
 }
+
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1s linear infinite;
+}
