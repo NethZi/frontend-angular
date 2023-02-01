@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RestApiService } from './../rest-api.service';
 
 import { ChatService } from '../services/chat/chat.service';
 
@@ -8,7 +9,7 @@ import { ChatService } from '../services/chat/chat.service';
   templateUrl: './live-chat.component.html',
   styleUrls: ['./live-chat.component.scss']
 })
-export class LiveChatComponent implements OnInit, AfterViewInit {
+export class LiveChatComponent implements OnInit {
 
   @ViewChild('popup', {static: false}) popup: any;
 
@@ -21,12 +22,15 @@ export class LiveChatComponent implements OnInit, AfterViewInit {
   public phone: string;
   public currentUser;
   public selectedUser;
-
-  public userList = [
+  email: any;
+  isLogged: boolean = true;
+  users: any;
+  public userList = [];
+  public userList1 = [
     {
       id: 1,
       name: 'Shoezy',
-      phone: '9876598765',
+      email: 'yasasa97r@gmail.com',
       image: 'assets/user/user-1.png',
       roomId: {
         2: 'room-1',
@@ -37,7 +41,7 @@ export class LiveChatComponent implements OnInit, AfterViewInit {
     {
       id: 2,
       name: 'Nethmini',
-      phone: '9876543210',
+      email: 'nethug@gmail.com',
       image: 'assets/user/user-2.png',
       roomId: {
         1: 'room-1',
@@ -48,7 +52,7 @@ export class LiveChatComponent implements OnInit, AfterViewInit {
     {
       id: 3,
       name: 'Diluka',
-      phone: '9988776655',
+      email: '9988776655',
       image: 'assets/user/user-3.png',
       roomId: {
         1: 'room-2',
@@ -58,8 +62,8 @@ export class LiveChatComponent implements OnInit, AfterViewInit {
     },
     {
       id: 4,
-      name: 'Anton',
-      phone: '9876556789',
+      name: 'Yasasa',
+      email: 'yasasa@gmail.com',
       image: 'assets/user/user-4.png',
       roomId: {
         1: 'room-3',
@@ -71,11 +75,13 @@ export class LiveChatComponent implements OnInit, AfterViewInit {
 
   constructor(
       private modalService: NgbModal,
-      private chatService: ChatService
+      private chatService: ChatService,
+      private rest: RestApiService
   ) {
   }
 
   ngOnInit(): void {
+    this.startChat();
     this.chatService.getMessage()
         .subscribe((data: { user: string, room: string, message: string }) => {
           // this.messageArray.push(data);
@@ -90,26 +96,62 @@ export class LiveChatComponent implements OnInit, AfterViewInit {
         });
   }
 
-  ngAfterViewInit(): void {
-    this.openPopup(this.popup);
-  }
 
-  openPopup(content: any): void {
-    this.modalService.open(content, {backdrop: 'static', centered: true});
-  }
+  async startChat() {
+    try {
+          const data = await this.rest.get(
+              'http://localhost:3030/api/users',
+          );
+          this.userList = data['users'];
+          console.log(this.userList);
+      } catch (e) {
+      }
+    this.userList.forEach((obj, index) => {
+      obj.id = index + 1;
+      console.log(obj.id);
+      if (obj.id  == 1) {
+            obj.roomId = {
+              2: 'room-1',
+              3: 'room-2',
+              4: 'room-3'
+            };
+          }
+      if (obj.id  == 2) {
+        obj.roomId = {
+          1: 'room-1',
+          3: 'room-4',
+          4: 'room-5'
+        };
+      }
+      if (obj.id == 3) {
+        obj.roomId = {
+          1: 'room-2',
+          2: 'room-4',
+          4: 'room-6'
+        };
+      }
+      if (obj.id == 4) {
+        obj.roomId = {
+          1: 'room-3',
+          2: 'room-5',
+          3: 'room-6'
+        };
+      }
+      obj.image = 'assets/img/logo.png';
 
-  login(dismiss: any): void {
-    this.currentUser = this.userList.find(user => user.phone === this.phone.toString());
-    this.userList = this.userList.filter((user) => user.phone !== this.phone.toString());
+    });
+
+    this.email = sessionStorage.getItem('email');
+    this.currentUser = this.userList.find(user => user.email === this.email);
+    this.userList = this.userList.filter((user) => user.email !== this.email);
 
     if (this.currentUser) {
       this.showScreen = true;
-      dismiss();
     }
   }
 
-  selectUserHandler(phone: string): void {
-    this.selectedUser = this.userList.find(user => user.phone === phone);
+  selectUserHandler(email: string): void {
+    this.selectedUser = this.userList.find(user => user.email === email);
     this.roomId = this.selectedUser.roomId[this.currentUser.id];
     this.messageArray = [];
 

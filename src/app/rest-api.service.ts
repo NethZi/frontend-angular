@@ -1,18 +1,18 @@
-//rest-api.service.ts - Type script file to provide REST(GET,POST) Services in the elearning application 
+//rest-api.service.ts - Type script file to provide REST(GET,POST) Services in the elearning application
 
 
-//including required files and services 
+//including required files and services
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-//exporting the RestAPi Service 
+//exporting the RestAPi Service
 @Injectable()
 export class RestApiService {
 
   constructor(private http: HttpClient) { }
 
   getHeaders() {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     return token ? new HttpHeaders().set('Authorization', token) : null;
   }
 

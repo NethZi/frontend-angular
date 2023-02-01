@@ -58,7 +58,7 @@ export class CartComponent implements OnInit {
   validate() {
     if (!this.quantities.every(data => data > 0)) {
       this.data.warning('Quantity cannot be less than one.');
-    } else if (!localStorage.getItem('token')) {
+    } else if (!sessionStorage.getItem('token')) {
       this.router.navigate(['/login']).then(() => {
         this.data.warning('You need to login before making a purchase.');
       });

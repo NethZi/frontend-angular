@@ -76,7 +76,7 @@ export class RegistrationComponent implements OnInit {
               },
           );
           if (data['success']) {
-            localStorage.setItem('token', data['token']);
+            sessionStorage.setItem('token', data['token']);
             await this.data.getProfile();
             this.data.success('Registration successful!');
             await this.router.navigateByUrl('login');

@@ -1,7 +1,7 @@
-//DataService.ts - Type Script file to facilitate DataService to know type of message,handle cart functionality 
+//DataService.ts - Type Script file to facilitate DataService to know type of message,handle cart functionality
 
 
-//including required modules and services 
+//including required modules and services
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { RestApiService } from './rest-api.service';
@@ -41,7 +41,7 @@ export class DataService {
 
   async getProfile() {
     try {
-      if (localStorage.getItem('token')) {
+      if (sessionStorage.getItem('token')) {
         const data = await this.rest.get(
           'http://localhost:3030/api/accounts/profile',
         );
@@ -54,7 +54,7 @@ export class DataService {
   }
 
   getCart() {
-    const cart = localStorage.getItem('cart');
+    const cart = sessionStorage.getItem('cart');
     return cart ? JSON.parse(cart) : [];
   }
 
@@ -65,7 +65,7 @@ export class DataService {
     } else {
       cart.push(item);
       this.cartItems++;
-      localStorage.setItem('cart', JSON.stringify(cart));
+      sessionStorage.setItem('cart', JSON.stringify(cart));
       return true;
     }
   }
@@ -75,12 +75,12 @@ export class DataService {
     if (cart.find(data => JSON.stringify(data) === JSON.stringify(item))) {
       cart = cart.filter(data => JSON.stringify(data) !== JSON.stringify(item));
       this.cartItems--;
-      localStorage.setItem('cart', JSON.stringify(cart));
+      sessionStorage.setItem('cart', JSON.stringify(cart));
     }
   }
 
   clearCart() {
     this.cartItems = 0;
-    localStorage.setItem('cart', '[]');
+    sessionStorage.setItem('cart', '[]');
   }
 }
