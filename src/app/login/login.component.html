@@ -4,8 +4,8 @@
       <div class="col-lg-4 offset-lg-4">
         <app-message></app-message>
         <div class="card bg-light">
-          <div class="card-body">
-            <h4 class="text-center">Login</h4>
+          <div class="card-body" style="background-color: #fee6c6;">
+            <h4 class="text-center"><b>Login</b></h4>
             <hr>
             <form>
               <div class="form-group">
@@ -17,7 +17,7 @@
                 <input type="password" name="password" class="form-control" [(ngModel)]="password">
               </div>
               <hr>
-              <button type="button" class="btn btn-primary btn-block" (click)="login()" [disabled]="btnDisabled">Login</button>
+              <button type="button" class="btn btn-primary btn-block" (click)="login()" [disabled]="btnDisabled" style="background-color: #ffb800; border-color:#ffb100; color: black; font-size: larger;"><b>Login</b></button>
             </form>
           </div>
         </div>

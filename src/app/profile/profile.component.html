@@ -10,7 +10,7 @@
     <div *ngIf="data.user" class="row mt-5">
 
       <div class="col-md-8 ml-3">
-        <p id="name" class="lead">{{ data.user.name }}</p>
+        <p id="name" class="lead"><b>{{ data.user.name }}</b></p>
         <a routerLink="/chat" class="btn btn-warning">My Chats</a>
         <br>
         <br>
@@ -25,7 +25,7 @@
           <hr>
           <div class="row">
             <div class="col-md-6 mb-3">
-              <a routerLink="/profile/postproduct" class="btn btn-outline-success btn-block">Post Product for Sale</a>
+              <a routerLink="/profile/postproduct" class="btn btn-outline-info btn-block">Post Product for Sale</a>
             </div>
             <div class="col-md-6">
               <a routerLink="/profile/myproducts" class="btn btn-outline-info btn-block">My Products</a>

@@ -36,6 +36,10 @@ export class MyProductsComponent implements OnInit {
     }
   }
 
+  async edit() {
+    await this.router.navigateByUrl('/profile/postproduct');
+  }
+
    async delete(id) {
     try {
     const data =  this.rest.get(
